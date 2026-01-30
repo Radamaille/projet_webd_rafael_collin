@@ -63,9 +63,7 @@ const Search = () => {
                 ))}
             </ul>
 
-            {!loading && !error && books.length===0 && <p>
-                No results found for.
-            </p>}
+            {!loading && !error && books.length===0 && <p>No results found for.</p>}
         </div>
     );
 };

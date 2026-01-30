@@ -1,6 +1,18 @@
 import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+interface WikiPiedDatas {
+    extract?: string;
+    thumbnail?: {
+        source?: string;
+    };
+    content_urls?: {
+        desktop?: {
+            page?: string;
+        }
+    }
+}
+
 interface BookDetails {
     title: string;
     covers?: number[];
@@ -13,6 +25,27 @@ const Book = () => {
     const [book, setBook] = useState<BookDetails | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [wikiData, setWikiData] = useState<WikiPiedDatas | null>(null);
+
+    useEffect(() => {
+        if (!book?.title) {
+            return;
+        }
+        const fetchWikipieda = async () => {
+            try {
+                const response = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(book.title)}`);
+                if (!response.ok) {
+                    return;
+                }
+                const data = await response.json();
+                setWikiData(data);
+            } catch {
+                // permet d'ignorer les erreurs wikipédia
+            }
+        };
+        fetchWikipieda();
+    }, [book]);
+
 
     useEffect(() => {
         if (!id) {
@@ -70,6 +103,31 @@ const Book = () => {
             )}
 
             {description && <p>{description}</p>}
+
+            {wikiData && (
+                <section>
+                    <h3>About the book by Wikipedia</h3>
+                    {wikiData.thumbnail &&  (
+                        <img
+                            src={wikiData.thumbnail.source}
+                            alt={`wikipedia image for ${book.title}`}
+                        />
+                    )}
+                    {wikiData.extract && <p>{wikiData.extract}</p>}
+                    {wikiData.content_urls?.desktop?.page && (
+                        <p>
+                            <a
+                                href={wikiData.content_urls.desktop.page}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Read more on Wikipedia
+                            </a>
+                        </p>
+                    )}
+                </section>
+            )}
+
             {book.subjects && (
                 <div>
                     <h3>Subjects</h3>

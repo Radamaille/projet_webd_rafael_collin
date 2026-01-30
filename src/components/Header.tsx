@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {Link} from "react-router-dom";
 
 const Header = () => {
     const [search, setSearch] = useState('');
@@ -19,8 +20,9 @@ const Header = () => {
         setSearch('');
     }
     return (
-        <header>
+        <header className="header">
             <h1>SearchBar</h1>
+
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -31,6 +33,12 @@ const Header = () => {
                 />
                 <button type="submit" disabled={!search.trim()}>Search</button>
             </form>
+
+            <nav>
+                <Link to="/">Home</Link>
+                {' | '}
+                <Link to="/advanced-search">Advanced Search</Link>
+            </nav>
         </header>
     );
 }
