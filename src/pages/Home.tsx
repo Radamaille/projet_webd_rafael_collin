@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 
 interface RecentsChanges{
     id: string;
-    type: string;
-    data?: {
-        title?: string,
-        key?: string
-    };
+    kind: string;
+    timestamp: string;
+    comment?: string;
+    changes?:{
+        key: string;
+    } [];
 }
 
 const Home = () => {
@@ -39,7 +40,7 @@ const Home = () => {
         fetchRecentsChanges();
     }, []);
 
-    const bookChanges = changes.filter(change => change.data?.key && change.data.key.startsWith('/works/'));
+    const bookChanges = changes.filter((change) => change.changes?.some((c) => c.key.startsWith('/works/')));
 
     return (
         <div>
@@ -49,25 +50,37 @@ const Home = () => {
             {error && <p>Error: {error}</p>}
             {!loading && !error && changes.length === 0 && <p>No recent changes found.</p>}
             <ul>
-                {bookChanges.map((change) => (
-                    <li key={change.id}>
-                        <p>
-                            <strong>Type:</strong>{change.type}
-                        </p>
+                {bookChanges.map((change) => {
+                    const detailsChange = change.changes!.find(c =>
+                        c.key.startsWith('/works/')
+                    )!.key;
 
-                        <p>
-                            <strong>Book reference:</strong> {change.data?.key}
-                        </p>
+                    return (
+                        <li key={change.id}>
+                            <p>
+                                <strong>Change type:</strong> {change.kind}
+                            </p>
 
-                        <Link to={`/book/${change.data!.key!.replace('/works/', '')}`}>
-                            View book details
-                        </Link>
-                    </li>
-                ))}
+                            {change.comment && <p>{change.comment}</p>}
+
+                            <p>
+                                <strong>Date:</strong>{' '}
+                                {new Date(change.timestamp).toLocaleString()}
+                            </p>
+
+                            <Link to={`/book/${detailsChange.replace('/works/', '')}`}>
+                                View book details
+                            </Link>
+                        </li>
+                    );
+                })}
             </ul>
+
             {!loading && bookChanges.length === 0 && (
                 <p>No recent book-related updates found.</p>
             )}
+
+
         </div>
     );
 };
