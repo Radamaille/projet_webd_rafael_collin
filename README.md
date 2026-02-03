@@ -7,14 +7,14 @@ Elle permet également de consulter les dernières mise à jour de la librairie 
 
 #Fonctionnalités 
 - Barre de recherche de livres 
-- Recherche avancée permettant de rentrer des détails spécifiques sur une oeuvre
+- Recherche avancée permettant de rentrer des détails spécifiques pour une oeuvre
 - Affichage des changements récents de la librairie
 - Navigation entre la Home page et la recherche avancée avec React Routeur
 - Tests unitaires sur les fonctionnalités principales
 
 ---
 
-# Technologies utilisée
+# Technologies utilisées
 - **React**
 - **TypeScript**
 - **Vite**
