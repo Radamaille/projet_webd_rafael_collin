@@ -92,7 +92,7 @@ const Book = () => {
     const description = typeof book.description === 'string' ? book.description : book.description?.value;
 
     return (
-        <div>
+        <div className="BookPage">
             <h2>{book.title}</h2>
 
             {book.covers && book.covers.length > 0 && (

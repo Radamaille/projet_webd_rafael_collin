@@ -157,7 +157,7 @@ ul {
 
 .card {
   background-color: #DDD0C8;
-  color: #e5e7eb;
+  color: #323232;
   padding: 1.2rem;
   margin-bottom: 1.2rem;
   border-radius: 10px;
@@ -228,4 +228,11 @@ p {
   transform: translateY(-1px);
 }
 
+.BookPage p {
+  color: #DDD0C8 ;
+}
+
+.advancedSearch + .bookPage p {
+  color: #DDD0C8;
+}
 
