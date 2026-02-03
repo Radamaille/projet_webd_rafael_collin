@@ -133,7 +133,7 @@ const Book = () => {
                     <h3>Subjects</h3>
                     <ul>
                         {book.subjects.slice(0, 10).map(subject => (
-                            <li key={subject}>{subject}</li>
+                            <li className= "card" key={subject}>{subject}</li>
                         ))}
                     </ul>
                 </div>

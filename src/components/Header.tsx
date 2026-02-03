@@ -21,7 +21,8 @@ const Header = () => {
     }
     return (
         <header className="header">
-            <h1>SearchBar</h1>
+            <h1>Tesseract Library</h1>
+            <h2>SearchBar</h2>
 
             <form onSubmit={handleSubmit}>
                 <input

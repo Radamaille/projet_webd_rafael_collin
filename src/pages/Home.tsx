@@ -22,7 +22,7 @@ const Home = () => {
             setError('');
 
             try {
-                const response = await fetch('https://openlibrary.org/recentchanges.json?limit=20');
+                const response = await fetch('https://openlibrary.org/recentchanges.json?limit=100');
 
                 if (!response.ok){
                     setError('Could not fetch recent changes.');
@@ -56,7 +56,7 @@ const Home = () => {
                     )!.key;
 
                     return (
-                        <li key={change.id}>
+                        <li className="card" key={change.id}>
                             <p>
                                 <strong>Change type:</strong> {change.kind}
                             </p>

@@ -53,7 +53,7 @@ const Search = () => {
             {!loading && !error && books.length === 0 && <p>No results found.</p>}
             <ul>
                 {books.map((book) => (
-                    <li key={book.key}>
+                    <li className="card" key={book.key}>
                         <Link to={`/book/${book.key.replace('/works/', '')}`}>
                             <strong>{book.title}</strong>
                         </Link>

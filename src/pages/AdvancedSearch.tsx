@@ -49,9 +49,9 @@ const AdvancedSearch = () => {
     };
 
     return (
-        <div>
+        <div className="advancedSearch">
             <h1>Advanced Search</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className="advancedSearchForm" onSubmit={handleSubmit(onSubmit)}>
                 <input
                     type="text"
                     placeholder="Title"
@@ -75,12 +75,14 @@ const AdvancedSearch = () => {
             {!loading && !error && books.length === 0 && <p>No results found.</p>}
             <ul>
                 {books.map((book) => (
-                    <li key={book.key}>
+                    <li className="card" key={book.key}>
                         <Link to={`/book/${book.key.replace('/works/', '')}`}>
                             {book.title}
                         </Link>
                         {book.author_name && <p>Author: {book.author_name.join(', ')}</p>}
                         {book.first_publish_year && <p>First Published: {book.first_publish_year}</p>}
+                        <br>
+                        </br>
                     </li>
                 ))}
             </ul>
