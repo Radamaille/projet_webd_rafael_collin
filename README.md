@@ -27,15 +27,20 @@ Elle permet également de consulter les dernières mise à jour de la librairie 
 
 ## Etapes de lancement du Projet en local : 
 
-### 1) Installer les dépendances
+### 1) Assurez vous d'être positionné sur le bon chemin  de fichier :
+```bash
+ cd .\projet_webd_rafael_collin\
+```
+
+### 2) Installer les dépendances
 ```bash
 npm install
 ```
-### 2) Lancer le serveur web
+### 3) Lancer le serveur web
 ```bash
 npm run dev
 ```
-### 3) Lancer les tests
+### 4) Lancer les tests
 ```bash
 npm test
 ```
